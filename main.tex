@@ -1,0 +1,107 @@
+\documentclass[11pt,a4paper,twoside]{report}
+\usepackage[utf8]{inputenc}
+\usepackage[basque]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{makeidx}
+\usepackage{graphicx}
+
+\usepackage{float}
+
+\usepackage{lmodern}
+\usepackage[left=3.25cm,right=3.25cm,top=3cm,bottom=2.0cm,includefoot]{geometry}
+\usepackage[font=small,labelfont=bf]{caption}
+\usepackage{fancyhdr}
+\usepackage{afterpage}
+
+\newcommand\blankpage{%
+	\null
+	\thispagestyle{empty}%
+    \addtocounter{page}{-1}%
+	\newpage}
+
+% Kapituluen formatua aldatzeko
+\usepackage{titlesec}
+\titleformat{\chapter}[display]
+  {\normalfont\huge\bfseries}
+  {\thechapter\MakeLowercase{\chaptertitlename}}{1pc}
+  {{\titlerule[0.5pt]}\vspace{1pc}}
+\titleformat{name=\chapter,numberless}[display]
+  {\normalfont\huge\bfseries}{}{1pc}
+  {\huge}
+
+% Euskarazko label-ak:
+% Dokumentazioa:
+% https://tex.stackexchange.com/questions/301347/table-caption-label-format-as-table-l-1
+% https://tex.stackexchange.com/questions/214043/how-do-you-add-a-newline-between-section-number-and-section-title
+\DeclareCaptionLabelFormat{label-euskara}{#2. #1}
+\captionsetup[figure]{labelfont=bf,name={irudia},labelformat=label-euskara}
+\captionsetup[table]{labelfont=bf,name={taula},labelformat=label-euskara}
+
+
+% IEEren formatoak '----' ez jartzeko
+\usepackage[redeflists]{IEEEtrantools}
+
+\usepackage{appendix}
+
+% table of contents-en estiloa aldatzeko
+\usepackage{tocloft}
+\setlength{\cftbeforetoctitleskip}{15pt}
+\renewcommand{\cfttoctitlefont}{\bfseries\sffamily\huge}
+
+% Indizearen izenburua aldatu
+\addto\captionsbasque{\renewcommand\contentsname{Gaien aurkibidea}}
+
+% Kapituluak euskeratu
+\addto{\captionsbasque}{\renewcommand*{\chaptername}{. kapitulua}}
+
+% Eranskinak euskeratu
+    \addto{\captionsbasque}{\renewcommand*{\appendixname}{ eranskina}}
+
+% Azala PDF bezala kargatzeko
+\usepackage{pdfpages}
+
+\title{IEEEtran\\Euskarazko bertsioa}
+\author{Jon Gabirondo López}
+\date{2021/02/06}
+
+\begin{document}
+
+% 'Available' euskeratu:
+% https://tex.stackexchange.com/questions/211007/bibtex-replace-the-available-before-url-in-citations-and-references-with-its
+\bstctlcite{IEEEexample:BSTcontrol}
+
+% Índice de contenido
+\tableofcontents
+
+\chapter{hau lehen kapitulua da}
+
+\begin{table}[H]
+\center
+\begin{tabular}{|c|c|c|}
+\hline
+1  & 1  & 2  \\ \hline
+3  & 5  & 8  \\ \hline
+13 & 21 & 34 \\ \hline
+\end{tabular}
+\caption{Hau taula bat da.}
+\end{table}
+
+\chapter{hau bigarren kapitulua da}
+
+\section{hau sekzio bat da}
+
+\nocite{*}
+
+\bibliography{adibidea}
+\bibliographystyle{ieeetran-eu}
+
+\begin{appendices}
+
+\chapter{hau eranskin bat da}
+
+\end{appendices}
+
+\end{document}
+
